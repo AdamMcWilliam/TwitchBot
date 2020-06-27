@@ -1,5 +1,5 @@
 # TwitchBot
-Python Twitch bot created with twitchio for use in BeginWorld @ twitch.tv/beginbot
+Python Twitch bot created with twitchio for use in BeginWorld @ https://twitch.tv/beginbot
 
 Resources Used:
 
