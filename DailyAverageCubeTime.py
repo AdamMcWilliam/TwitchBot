@@ -15,7 +15,7 @@ SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 SAMPLE_SPREADSHEET_ID = 'REDACTED'
 SAMPLE_RANGE_NAME = 'A2:B'
 
-def DailyAvgCubeTime(today):
+def DailyAvgCubeTime():
     """Shows basic usage of the Sheets API.
     Prints values from a sample spreadsheet.
     """

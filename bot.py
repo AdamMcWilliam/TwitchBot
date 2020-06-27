@@ -159,7 +159,7 @@ async def act(ctx):
 
 @bot.command(name='!dact')
 async def dact(ctx):
-    dact = DailyAvgCubeTime(10)
+    dact = DailyAvgCubeTime()
     await ctx.send(f"Begins Daily Average: {dact}")
 
 
