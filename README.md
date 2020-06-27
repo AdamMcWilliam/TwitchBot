@@ -11,6 +11,7 @@ Google Spreadsheets API: https://developers.google.com/sheets/api/quickstart/pyt
 
 You need to download and add credentials.json file from google and add to the working directory.
 
+The live google spreadsheet being referred to below: https://docs.google.com/spreadsheets/d/1fR7O9sgzjfrYCJN2ITZzFYjHiSQUUf_DkuxsfbutZms/edit?usp=sharing
 
 Commands: 
 
@@ -51,12 +52,3 @@ Commands:
 
 !!grovel
  - gives a use a point after 2 attempts, attempts logged in a created json file.
-
-
-The live google spreadsheet in question: https://docs.google.com/spreadsheets/d/1fR7O9sgzjfrYCJN2ITZzFYjHiSQUUf_DkuxsfbutZms/edit?usp=sharing
-
-
-
-
-
-
