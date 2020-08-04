@@ -50,5 +50,14 @@ Commands:
 !!dact
  - Searches spreadsheet for all results of cube times on current day and calculates an average.
 
+!!bestcube
+ - Searches spreadsheet times are returns the fastest one.
+
 !!grovel
- - gives a use a point after 2 attempts, attempts logged in a created json file.
+ - Gives a use a point after 2 attempts, attempts logged in a created json file.
+
+ !!texttobinary [text]
+ - Converts given text to binary and outputs to chat
+
+ !!binarytotext [binary]
+ - Converts given binary to text and outputs to chat

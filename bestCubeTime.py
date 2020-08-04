@@ -2,6 +2,9 @@ from __future__ import print_function
 import pickle
 import os.path
 import os
+from datetime import datetime 
+from datetime import date 
+import time
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
@@ -11,9 +14,9 @@ SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 
 # The ID and range of a sample spreadsheet.
 SAMPLE_SPREADSHEET_ID = os.environ['SPREADSHEET_ID']
-SAMPLE_RANGE_NAME = 'C2'
+SAMPLE_RANGE_NAME = 'B3:B'
 
-def AvgCubeTime():
+def bestCubeTime():
     """Shows basic usage of the Sheets API.
     Prints values from a sample spreadsheet.
     """
@@ -46,16 +49,25 @@ def AvgCubeTime():
     rows = result.get('values')
     #print(rows)
 
-   #a = str(rows).split('[[')
-   #a = str(a).split(']]')
-   #print(a)
-   #act =  a[0]
-    for i in rows:
-        OAvg = i[0]
 
-    return OAvg
+    #define times list
+    allTimes = []
+
+    for i in rows:
+        #get time of matched date
+        #print(i)
+        allTimes.append(i[0])
+        #print(p)
+
+    print(allTimes)
+
+    allTimes.sort()
+
+    print(allTimes[:1])
+    
+    return allTimes[:1]
 
 
 
 if __name__ == '__main__':
-    AvgCubeTime()
+    bestCubeTime()

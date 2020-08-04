@@ -1,6 +1,7 @@
 from __future__ import print_function
 import pickle
 import os.path
+import os
 from datetime import datetime 
 from datetime import date 
 import time
@@ -12,7 +13,7 @@ from google.auth.transport.requests import Request
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 
 # The ID and range of a sample spreadsheet.
-SAMPLE_SPREADSHEET_ID = 'REDACTED'
+SAMPLE_SPREADSHEET_ID = os.environ['SPREADSHEET_ID']
 SAMPLE_RANGE_NAME = 'A2:B'
 
 def DailyAvgCubeTime():
@@ -99,4 +100,4 @@ def DailyAvgCubeTime():
 
 
 if __name__ == '__main__':
-    DailyAvgCubeTime(today)
+    DailyAvgCubeTime()

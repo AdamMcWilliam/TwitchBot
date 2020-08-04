@@ -1,19 +1,25 @@
 # bot.py
 import os # for importing env vars for the bot to use
+import asyncio
 from twitchio.ext import commands
+from getBotInsurancePolicy import *
 from grovelAttempt import *
 from getBotStreetCred import *
 from getBotCoolPoints import *
 from AppendCubeTime import *
+from bestCubeTime import *
 from stealFromBot import *
+from whosSalty import *
 from AverageCubeTime import *
 from DailyAverageCubeTime import *
 from inflate import *
 from switchSides import *
 import datetime
+import sched, time
+import binascii
+
 
 bot = commands.Bot(
-    #all this is loaded from the .env file that you need to create
     # set up the bot
     irc_token=os.environ['TMI_TOKEN'],
     client_id=os.environ['CLIENT_ID'],
@@ -21,6 +27,7 @@ bot = commands.Bot(
     prefix=os.environ['BOT_PREFIX'],
     initial_channels=[os.environ['CHANNEL']]
 )
+
 
 # bot.py, below bot object
 @bot.event
@@ -38,17 +45,17 @@ async def event_message(ctx):
     # make sure the bot ignores itself and the streamer
     if ctx.author.name.lower() == os.environ['BOT_NICK'].lower():
         return
+      
+    #output messages to console  
+    print (ctx.author.name.lower() + ":" + ctx.content)
+
+    #if 5min cat loop 
+    # if ctx.content == "CoolCat CoolCat CoolCat":
+    #     print("Its a loop!")
+    #     await insure(ctx)
 
     #bot.py, in event_message, below the bot ignore stuffs
     await bot.handle_commands(ctx)
-
-
-
-# bot.py, below event_message function
-# @bot.command(name='test')
-# async def test(ctx):
-#     await ctx.send('test passed!')
-
 
 @bot.command(name='!manifestozanussbot')
 async def manifestozanussbot(ctx):
@@ -58,7 +65,9 @@ async def manifestozanussbot(ctx):
 async def botcss(ctx):
     if(ctx.author.name.lower() !='zanuss'):
         return
-    await ctx.send('!css https://gist.githubusercontent.com/AdamMcWilliam/5619ec9f7fa83bef75e718e6d7daec22/raw/0376fc54fdfe47a5c71a2b8ea6911d8abb1d58f3/beginZanussBot.css')
+    cssLink = ctx.content.split('!!botcss')
+    cssLink = cssLink[1]    
+    await ctx.send(f'!css {cssLink}')
 
 
 @bot.command(name='!propsme')
@@ -93,6 +102,19 @@ async def buyall(ctx):
     await ctx.send(f'!buy random {totalCool}')   
 
 
+@bot.command(name='!insure')
+async def insure(ctx):
+    insured = insureBot()
+    if(insured == False):
+        await ctx.send(f'!insurance')
+
+@bot.command(name='!salt')
+async def salt(ctx):
+    salty = whosSalty(ctx.content)
+    await ctx.send(f'!buy salt')
+    await asyncio.sleep(1)
+    await ctx.send(f'!give {salty} salt')  
+    await asyncio.gather(salt(ctx), salt(ctx), salt(ctx)) 
 
 @bot.command(name='cubed')
 async def cubed(ctx):
@@ -150,7 +172,6 @@ async def sideWithWin(ctx):
     print(f'!{majority}')
  
 
-
 @bot.command(name='!act')
 async def act(ctx):
     act = AvgCubeTime()
@@ -162,11 +183,54 @@ async def dact(ctx):
     dact = DailyAvgCubeTime()
     await ctx.send(f"Begins Daily Average: {dact}")
 
+@bot.command(name="!bestcube")
+async def bestcube(ctx):
+    bestCube = bestCubeTime()
+    await ctx.send(f"Best recorded cube time: {bestCube}")
+
 
 @bot.command(name='!grovel')
-async def dact(ctx):
+async def grovel(ctx):
     grovelerMessage = grovelAttempt(ctx.author.name.lower())
     await ctx.send(f"{grovelerMessage}")
+
+@bot.command(name="!output")
+async def outputTest(ctx):
+    print(ctx._get_channel)
+    print(dir(ctx))
+
+@bot.command(name='!texttobinary')
+async def textToBinary(ctx):
+    x = ctx.content.split('!texttobinary ')
+    text = str(x[1])
+
+    encoding='utf-8'
+    errors='surrogatepass'
+
+    bits = bin(int(binascii.hexlify(text.encode(encoding, errors)), 16))[2:]
+    result = bits.zfill(8 * ((len(bits) + 7) // 8))
+
+    await ctx.send(f"{text} in binary is: {result}")
+
+
+@bot.command(name='!binarytotext')
+async def binaryToText(ctx):
+    x = ctx.content.split('!binarytotext ')
+    message = str(x[1])
+
+    encoding='utf-8'
+    errors='surrogatepass'
+
+    n = int(message, 2)
+    result = int2bytes(n).decode(encoding, errors)
+    
+    await ctx.send(f"{message} in text is: {result}")
+
+
+def int2bytes(i):
+    hex_string = '%x' % i
+    n = len(hex_string)
+    return binascii.unhexlify(hex_string.zfill(n + (n & 1)))
 
 
 # bot.py
