@@ -83,8 +83,9 @@ async def csstemplate(ctx):
 @bot.command(name='!donateme')
 async def donateme(ctx):
     if ctx.author.name.lower() == 'whatsinmyopsec' or ctx.author.name.lower() == 'opsecbot':
-        return
-    await ctx.send(f'!donate {ctx.author.name.lower()}')    
+         await ctx.send(f'Dont have anything to donate....for you')
+    else:
+        await ctx.send(f'!donate {ctx.author.name.lower()}')    
 
 
 @bot.command(name='!propsall')
