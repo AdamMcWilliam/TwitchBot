@@ -34,7 +34,7 @@ bot = commands.Bot(
 async def event_ready():
     'Called once when the bot goes online.'
     print(f"{os.environ['BOT_NICK']} is online!")
-   #ws = bot._ws  # this is only needed to send messages within event_ready
+    #ws = bot._ws  # this is only needed to send messages within event_ready
    #await ws.send_privmsg(os.environ['CHANNEL'], f"/me has Entered the chat!")
 
 
@@ -45,7 +45,7 @@ async def event_message(ctx):
     # make sure the bot ignores itself and the streamer
     if ctx.author.name.lower() == os.environ['BOT_NICK'].lower():
         return
-      
+
     #output messages to console  
     print (ctx.author.name.lower() + ":" + ctx.content)
 
@@ -53,9 +53,13 @@ async def event_message(ctx):
     # if ctx.content == "CoolCat CoolCat CoolCat":
     #     print("Its a loop!")
     #     await insure(ctx)
+    
+    if ctx.author.name.lower() == "artmattdank":
+        await bot._ws.send_privmsg(os.environ['CHANNEL'], f"beginbArt beginbArt beginbArt")
 
     #bot.py, in event_message, below the bot ignore stuffs
     await bot.handle_commands(ctx)
+    
 
 @bot.command(name='!manifestozanussbot')
 async def manifestozanussbot(ctx):
@@ -83,7 +87,7 @@ async def csstemplate(ctx):
 @bot.command(name='!donateme')
 async def donateme(ctx):
     if ctx.author.name.lower() == 'whatsinmyopsec' or ctx.author.name.lower() == 'opsecbot':
-         await ctx.send(f'Dont have anything to donate....for you')
+        await ctx.send(f'Dont have anything to donate....for you')
     else:
         await ctx.send(f'!donate {ctx.author.name.lower()}')    
 
