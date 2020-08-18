@@ -61,3 +61,6 @@ Commands:
 
  !!binarytotext [binary]
  - Converts given binary to text and outputs to chat
+
+ !!zanussbotgit
+ - outputs a link to this repo

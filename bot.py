@@ -57,9 +57,22 @@ async def event_message(ctx):
     if ctx.author.name.lower() == "artmattdank":
         await bot._ws.send_privmsg(os.environ['CHANNEL'], f"beginbArt beginbArt beginbArt")
 
+    #lulbot
+    if ctx.content == "LUL":
+        await bot._ws.send_privmsg(os.environ['CHANNEL'], f"beginbThis beginbThis beginbThis")
+
+
+    #hello
+    if ctx.content == "hello":
+        await bot._ws.send_privmsg(os.environ['CHANNEL'], f"hello @{ctx.author.name.lower()}")
+
     #bot.py, in event_message, below the bot ignore stuffs
     await bot.handle_commands(ctx)
     
+
+@bot.command(name='!zanussbotgit')
+async def manifestozanussbot(ctx):
+    await ctx.send('Look at my insides: https://github.com/AdamMcWilliam/TwitchBot ')
 
 @bot.command(name='!manifestozanussbot')
 async def manifestozanussbot(ctx):
