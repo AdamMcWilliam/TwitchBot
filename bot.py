@@ -66,6 +66,13 @@ async def event_message(ctx):
     if ctx.content == "hello":
         await bot._ws.send_privmsg(os.environ['CHANNEL'], f"hello @{ctx.author.name.lower()}")
 
+
+    #whats a google
+    searchEngines = ['google','bing', 'yahoo', 'baidu', 'aol', 'ask.com', 'excite', 'duckduckgo', 'wolfram alpha', 'yandex', 'lycos', 'chacha.com', 'searx', 'cc search', 'swisscows', 'startpage', 'search encrypt', 'gibiru', 'onesearch', 'wiki.com', 'boardreader', 'givewater', 'ekoru', 'ecosia', 'dogpile', 'yippy', 'assjeaves']
+
+    if ctx.content.lower() in searchEngines:  
+        await bot._ws.send_privmsg(os.environ['CHANNEL'], f"Search engine of choice* ftfy @{ctx.author.name.lower()}")
+
     #bot.py, in event_message, below the bot ignore stuffs
     await bot.handle_commands(ctx)
     
