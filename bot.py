@@ -68,7 +68,7 @@ async def event_message(ctx):
 
 
     #whats a google
-    searchEngines = ['google','bing', 'yahoo', 'baidu', 'aol', 'ask.com', 'excite', 'duckduckgo', 'wolfram alpha', 'yandex', 'lycos', 'chacha.com', 'searx', 'cc search', 'swisscows', 'startpage', 'search encrypt', 'gibiru', 'onesearch', 'wiki.com', 'boardreader', 'givewater', 'ekoru', 'ecosia', 'dogpile', 'yippy', 'assjeaves']
+    searchEngines = ['google','bing', 'yahoo', 'baidu', 'aol', 'ask.com', 'excite', 'duckduckgo', 'wolfram alpha', 'yandex', 'lycos', 'chacha.com', 'searx', 'cc search', 'swisscows', 'startpage', 'search encrypt', 'gibiru', 'onesearch', 'wiki.com', 'boardreader', 'givewater', 'ekoru', 'ecosia', 'dogpile', 'yippy', 'assjeaves', 'gophero', 'binggo']
 
     if ctx.content.lower() in searchEngines:  
         await bot._ws.send_privmsg(os.environ['CHANNEL'], f"Search engine of choice* ftfy @{ctx.author.name.lower()}")
@@ -107,17 +107,19 @@ async def csstemplate(ctx):
 @bot.command(name='!donateme')
 async def donateme(ctx):
     if ctx.author.name.lower() == 'whatsinmyopsec' or ctx.author.name.lower() == 'opsecbot':
-        await ctx.send(f'Dont have anything to donate....for you')
+        return   
     else:
         await ctx.send(f'!donate {ctx.author.name.lower()}')    
 
 
 @bot.command(name='!propsall')
 async def propsall(ctx):
-    
-    totalProps = getBotStreet()
-    #print(f'!props zanuss {totalProps}')
-    await ctx.send(f'!props {ctx.author.name.lower()} {totalProps}')   
+    if ctx.author.name.lower() == 'whatsinmyopsec' or ctx.author.name.lower() == 'opsecbot':
+        return
+    else:
+        totalProps = getBotStreet()
+        #print(f'!props zanuss {totalProps}')
+        await ctx.send(f'!props {ctx.author.name.lower()} {totalProps}')   
 
 
 @bot.command(name='!buyall')
