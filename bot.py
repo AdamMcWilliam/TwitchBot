@@ -86,12 +86,16 @@ async def event_message(ctx):
 
 @bot.command(name="!random")
 async def getRandom(ctx):
-    msg = ctx.content.split('!random ')
-    numbers = msg[1].split(' ')
-    start = int(numbers[0])
-    end = int(numbers[1])
-    randResult = random.randint(start, end)
-    await ctx.send(f'Random number from {start} to {end}: {randResult}')
+        msg = ctx.content.split('!random ')
+        numbers = msg[1].split(' ')
+        start = int(numbers[0])
+        end = int(numbers[1])
+        randResult = random.randint(start, end)
+        if ctx.author.name.lower() !='DrDoomenberg':
+            await ctx.send(f'Random number from {start} to {end}: {randResult}')
+        else:
+            await ctx.send(f'Random number from {start} to {end}: 7')
+            
 
 @bot.command(name='!zanussbotgit')
 async def manifestozanussbot(ctx):
