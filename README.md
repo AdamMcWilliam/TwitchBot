@@ -64,3 +64,6 @@ Commands:
 
  !!zanussbotgit
  - outputs a link to this repo
+
+ !!random [number] [number]
+ - outputs random number in range given.

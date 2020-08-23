@@ -17,7 +17,7 @@ from switchSides import *
 import datetime
 import sched, time
 import binascii
-
+import random
 
 bot = commands.Bot(
     # set up the bot
@@ -68,19 +68,30 @@ async def event_message(ctx):
 
 
     #whats a google
-    searchEngines = ['google','bing', 'yahoo', 'baidu', 'aol', 'ask.com', 'excite', 'duckduckgo', 'wolfram alpha', 'yandex', 'lycos', 'chacha.com', 'searx', 'cc search', 'swisscows', 'startpage', 'search encrypt', 'gibiru', 'onesearch', 'wiki.com', 'boardreader', 'givewater', 'ekoru', 'ecosia', 'dogpile', 'yippy', 'assjeaves', 'gophero', 'binggo']
+    searchEngines = ['google','bing', 'yahoo', 'baidu', 'aol', 'ask.com', 'excite.com', 'duckduckgo', 'wolfram alpha', 'yandex', 'lycos', 'chacha.com', 'searx', 'cc search', 'swisscows', 'startpage', 'search encrypt', 'gibiru', 'onesearch', 'wiki.com', 'boardreader', 'givewater', 'ekoru', 'ecosia', 'dogpile', 'yippy', 'assjeaves', 'gophero', 'binggo']
 
+    #check if message contains a searchengine
     result = [ele for ele in searchEngines if(ele in ctx.content.lower())]
 
     if result:  
         await bot._ws.send_privmsg(os.environ['CHANNEL'], f"Search engine of choice* ftfy @{ctx.author.name.lower()}")
-        
-    # if ctx.content.lower() in searchEngines:  
-    #     await bot._ws.send_privmsg(os.environ['CHANNEL'], f"Search engine of choice* ftfy @{ctx.author.name.lower()}")
+
+
+
+
 
     #bot.py, in event_message, below the bot ignore stuffs
     await bot.handle_commands(ctx)
     
+
+@bot.command(name="!random")
+async def getRandom(ctx):
+    msg = ctx.content.split('!random ')
+    numbers = msg[1].split(' ')
+    start = int(numbers[0])
+    end = int(numbers[1])
+    randResult = random.randint(start, end)
+    await ctx.send(f'Random number from {start} to {end}: {randResult}')
 
 @bot.command(name='!zanussbotgit')
 async def manifestozanussbot(ctx):
