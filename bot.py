@@ -68,15 +68,21 @@ async def event_message(ctx):
 
 
     #whats a google
-    searchEngines = ['google','bing', 'yahoo', 'baidu', 'aol', 'ask.com', 'excite.com', 'duckduckgo', 'wolfram alpha', 'yandex', 'lycos', 'chacha.com', 'searx', 'cc search', 'swisscows', 'startpage', 'search encrypt', 'gibiru', 'onesearch', 'wiki.com', 'boardreader', 'givewater', 'ekoru', 'ecosia', 'dogpile', 'yippy', 'assjeaves', 'gophero', 'binggo']
+    searchEngines = ['google','bing', 'yahoo', 'baidu', 'aol', 'ask.com', 'excite.com', 'duckduckgo', 'wolfram alpha', 'yandex', 'lycos', 'chacha.com', 'searx', 'cc search', 'swisscows', 'startpage', 'search encrypt', 'gibiru', 'onesearch', 'wiki.com', 'boardreader', 'givewater', 'ekoru', 'ecosia', 'dogpile', 'yippy', 'assjeaves', 'gophero', 'binggo', 'qwant', 'blogsearchengine']
 
-    #check if message contains a searchengine
-    result = [ele for ele in searchEngines if(ele in ctx.content.lower())]
+    #ignore commands
+    if "!" not in ctx.content.lower(): 
+        #check if message contains a searchengine
+        result = [ele for ele in searchEngines if(ele in ctx.content.lower())]
 
-    if result:  
-        await bot._ws.send_privmsg(os.environ['CHANNEL'], f"Search engine of choice* ftfy @{ctx.author.name.lower()}")
+        if result:  
+            await bot._ws.send_privmsg(os.environ['CHANNEL'], f"Search engine of choice* ftfy @{ctx.author.name.lower()}")
 
 
+    #keep color icy
+    if "!color" in ctx.content:
+        if ctx.author.name.lower() == "adengamesbot":
+            await bot._ws.send_privmsg(os.environ['CHANNEL'], f"!color base16-icy")
 
 
 
