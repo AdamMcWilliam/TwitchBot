@@ -48,12 +48,12 @@ async def event_message(ctx):
 
     #output messages to console  
     print (ctx.author.name.lower() + ":" + ctx.content)
-
-    #if 5min cat loop 
-    # if ctx.content == "CoolCat CoolCat CoolCat":
-    #     print("Its a loop!")
-    #     await insure(ctx)
     
+     #if 5min cat loop 
+    if ctx.content == "CoolCat CoolCat CoolCat":
+        await bot._ws.send_privmsg(os.environ['CHANNEL'], f"!props all")
+
+
     if ctx.author.name.lower() == "artmattdank":
         await bot._ws.send_privmsg(os.environ['CHANNEL'], f"beginbArt beginbArt beginbArt")
 
@@ -68,27 +68,99 @@ async def event_message(ctx):
 
 
     #whats a google
-    searchEngines = ['google','bing', 'yahoo', 'baidu', 'aol', 'ask.com', 'excite.com', 'duckduckgo', 'wolfram alpha', 'yandex', 'lycos', 'chacha.com', 'searx', 'cc search', 'swisscows', 'startpage', 'search encrypt', 'gibiru', 'onesearch', 'wiki.com', 'boardreader', 'givewater', 'ekoru', 'ecosia', 'dogpile', 'yippy', 'assjeaves', 'gophero', 'binggo', 'qwant', 'blogsearchengine']
+    searchEngines = ['google ',' bing ', ' yahoo ', ' baidu ', 'aol ', 'ask.com', 'excite.com', 'duckduckgo', 'wolfram alpha', 'yandex', 'lycos ', 'chacha.com', 'searx', 'cc search', 'swisscows', 'startpage ', 'search encrypt', 'gibiru', 'onesearch', 'wiki.com', 'boardreader', 'givewater', 'ekoru', 'ecosia', 'dogpile', 'yippy', 'assjeaves', 'gophero', 'binggo', 'qwant', 'blogsearchengine']
 
     #ignore commands
     if "!" not in ctx.content.lower(): 
-        #check if message contains a searchengine
-        result = [ele for ele in searchEngines if(ele in ctx.content.lower())]
+        #ignore bot
+        if ctx.author.name.lower() !="beginbotbot":
+            #check if message contains a searchengine
+            result = [ele for ele in searchEngines if(ele in ctx.content.lower())]
 
-        if result:  
-            await bot._ws.send_privmsg(os.environ['CHANNEL'], f"Search engine of choice* ftfy @{ctx.author.name.lower()}")
+            if result:  
+                print(result)
+                await bot._ws.send_privmsg(os.environ['CHANNEL'], f"Search engine of choice* ftfy @{ctx.author.name.lower()}")
 
 
-    #keep color icy
+    #keep color greenscreen
     if "!color" in ctx.content:
         if ctx.author.name.lower() == "adengamesbot":
-            await bot._ws.send_privmsg(os.environ['CHANNEL'], f"!color base16-icy")
+            await bot._ws.send_privmsg(os.environ['CHANNEL'], f"!color base16-grayscale-light")
 
 
 
     #bot.py, in event_message, below the bot ignore stuffs
     await bot.handle_commands(ctx)
+
+
+@bot.command(name="!bingo")
+async def bingo(ctx):
+    await ctx.send(f'Begin Bingo: https://codepen.io/Zanuss/pen/BaKVKrX')
+
+
+@bot.command(name="!bingoadd")
+async def bingoAdd(ctx):
+    await ctx.send(f'Add to the bingo squares make a PR: https://github.com/AdamMcWilliam/beginbingo')
     
+
+@bot.command(name="!updateSoundeffect")
+async def updateSoundeffect(ctx):
+    command = "!soundeffect"
+    link = "https://www.youtube.com/watch?v=jn3Vv6VYdxw"
+    time = "00:02 00:06"
+
+    await ctx.send(f'{command} {link} {time}')
+
+
+@bot.command(name="!gzbsays")
+async def gzbsays(ctx):
+    
+    gzbSaysArray = ["Do you prefer to spend more time with your SO, family, or friends? Why"
+, "What activity calms you down and makes you feel at peace with the world?"
+, "How often do you feel overwhelmed?"
+, "If you see a homeless person asking for money, do you give them any?"
+, "What will immediately disqualify a potential SO?"
+, "How adventurous are you? Give some examples."
+, "Who do you want to be more like?"
+, "Do you think any part of your personality needs to be improved? If so, which part and why?"
+, "Which aspect of your life is going really well right now and which aspect could you use some help with?"
+, "How politically involved are you?"
+, "When was the last time you really panicked?"
+, "Where do you go when you want to be alone?"
+, "What chokes you up when you think about it?"
+, "What was the most awkward conversation you ever had with someone?"
+, "What holidays did your family really go all out for when you were growing up?"
+, "Would you rather spend the day at an art, history, or science museum?"
+, "What seemed normal in your family when you were growing up, but seems weird now?"
+, "What’s your favorite scene in a movie?"
+, "What is a controversial opinion do you have?"
+, "What fact do you try to ignore?"
+, "Who in your life always stresses you out and who do you rely on to help you calm down?"
+, "Why are you still streaming"]
+
+    randomQ = random.randint(0, len(gzbSaysArray))
+    await ctx.send(f'Gzb Says: {gzbSaysArray[randomQ]}???')   
+
+@bot.command(name="!gamble")
+async def gamble(ctx):
+    if ctx.author.name.lower() == "zanuss":
+        avg = AvgCubeTime()
+        #convert from timestamp to seconds current 0:00:00
+        splitAvg = avg.split(':')
+        h = int(splitAvg[0]) * 60 * 60
+        m = int(splitAvg[1]) * 60
+        s = int(splitAvg[2])
+        secs = h+m+s
+        await ctx.send(f"!bet {secs}")
+
+    
+@bot.command(name="!loadtop8")
+async def loadTop8(ctx):
+    top8 = ['distributedcache', 'bigedbot', 'disk_bot', 'nomorebot'] 
+    if ctx.author.name.lower() == "zanuss":
+        for i in top8:
+            await ctx.send(f'!top8 {i}')
+
 
 @bot.command(name="!random")
 async def getRandom(ctx):
