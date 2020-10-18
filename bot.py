@@ -14,6 +14,7 @@ from AverageCubeTime import *
 from DailyAverageCubeTime import *
 from inflate import *
 from switchSides import *
+from autoStu import *
 import datetime
 import sched, time
 import binascii
@@ -53,6 +54,32 @@ async def event_message(ctx):
     if ctx.content == "CoolCat CoolCat CoolCat":
         await bot._ws.send_privmsg(os.environ['CHANNEL'], f"!props all")
 
+    #stupacTroll
+    if ctx.author.name.lower() == "stupac62":
+        if "keeb" in ctx.content.lower() or "keyboard" in ctx.content.lower():
+            await bot._ws.send_privmsg(os.environ['CHANNEL'], f"@stupac62 Did someone say keyboards? https://puu.sh/GyIa0/8943af5203.png")
+
+    #ErikPromote
+    if ctx.author.name.lower() == "erikdotdev":
+        promotions = ['Did you know erik co-authored a book called Go in Action: https://www.manning.com/books/go-in-action',
+        'Did you know erik is on a podcast, ',
+        'Follow Erik on Twitch: https://www.twitch.tv/erikdotdev',
+        'Join Eriks Discord: https://discord.gg/FcqTxnw',
+        'See Erik at Gophercon: https://www.gophercon.com/',
+        'Did you know Erik used to work for Disney?',
+        'Did you know Erik works for Microsoft but hates the OS',
+        'Did you know Erik started programming when he was 14.',
+        'Check out Eriks Github: https://github.com/erikstmartin',
+        'Check out Eriks Blog: http://erik.dev/ Yes he does own that domain, cool right?'
+        ]
+
+        promotion = random.randint(0, len(promotions))
+
+        #limit how often it triggers
+        roll = random.randint(0,10)
+        if roll == 10:
+            await bot._ws.send_privmsg(os.environ['CHANNEL'], f"{promotions[promotion]}")
+        
 
     if ctx.author.name.lower() == "artmattdank":
         await bot._ws.send_privmsg(os.environ['CHANNEL'], f"beginbArt beginbArt beginbArt")
@@ -92,6 +119,11 @@ async def event_message(ctx):
     #bot.py, in event_message, below the bot ignore stuffs
     await bot.handle_commands(ctx)
 
+
+@bot.command(name="!kotd")
+async def kotd(ctx):
+    keeb = keeboftheday()
+    await ctx.send(f'keeb of the day: {keeb}')
 
 @bot.command(name="!bingo")
 async def bingo(ctx):
