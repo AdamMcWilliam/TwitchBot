@@ -3,3 +3,5 @@
 credentials.json
 token.pickle
 Pipfile.lock
+scavenger-bucket/
+linodeCreds.txt

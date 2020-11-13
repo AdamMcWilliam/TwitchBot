@@ -29,6 +29,7 @@ bot = commands.Bot(
     initial_channels=[os.environ['CHANNEL']]
 )
 
+dirname = os.getcwd()
 
 # bot.py, below bot object
 @bot.event
@@ -50,8 +51,30 @@ async def event_message(ctx):
     #output messages to console  
     print (ctx.author.name.lower() + ":" + ctx.content)
     
-     #if 5min cat loop 
-    if ctx.content == "CoolCat CoolCat CoolCat":
+    #get linode keys
+    if ctx.author.name.lower() == "beginbotbot" and "s3cmd" in ctx.content.lower():
+        fullString = ctx.content
+        splitText = fullString.split('=')
+        accessKeySplit = splitText[1]
+        secretKeySplit = splitText[2]
+        accessKey = accessKeySplit.split(' ')
+        accessKey = accessKey[0]
+        secretKey = secretKeySplit.split(' ')
+        secretKey = secretKey[0]
+        f = open(f"{dirname}/linodeCreds.txt", "w")
+        f.write(f"{accessKey.strip()}")
+        f.write("\n")
+        f.write(f"{secretKey.strip()}")
+        await f.close()
+
+
+    #love a lover
+    if ctx.content == "!love zanussbot":
+        await bot._ws.send_privmsg(os.environ['CHANNEL'], f"!love @{ctx.author.name.lower()}")
+
+
+    #if 5min cat loop 
+    if ctx.content == "CoolCat CoolCat CoolCat Mana Replenished":
         await bot._ws.send_privmsg(os.environ['CHANNEL'], f"!props all")
 
     #stupacTroll
@@ -258,7 +281,8 @@ async def buyall(ctx):
         return
     totalCool = getBotCool()
     #print(f'!props zanuss {totalProps}')
-    await ctx.send(f'!buy random {totalCool}')   
+    #await ctx.send(f'!buy random {totalCool}')  
+    await ctx.send(f'!buy 2000') 
 
 
 @bot.command(name='!insure')
