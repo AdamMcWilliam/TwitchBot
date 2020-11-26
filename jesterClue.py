@@ -2,8 +2,9 @@ import os
 import glob
 import boto
 import boto.s3.connection
+import pronouncing
 
-def becomeJester():
+def jesterClue():
     dirname = os.getcwd()
 
     f = open(f"{dirname}/linodeCreds.txt")
@@ -64,4 +65,13 @@ def becomeJester():
 
     print(latest_file)
     print(jesterCommand)
-    return(jesterCommand)
+    rhymes = pronouncing.rhymes(jesterCommand)
+
+    print(rhymes)
+    #get first rhyme
+    if not rhymes:
+        rhymes = "no clue found."
+    else:
+        rhymes = "Jester sound rhymes with "+rhymes[0]
+
+    return rhymes

@@ -5,3 +5,5 @@ token.pickle
 Pipfile.lock
 scavenger-bucket/
 linodeCreds.txt
+keebData/
+fruit.jpg

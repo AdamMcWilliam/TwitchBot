@@ -1,0 +1,2 @@
+from linodeConnect import *
+becomeJester()
