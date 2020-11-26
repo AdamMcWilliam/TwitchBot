@@ -29,11 +29,10 @@ bot = commands.Bot(
     client_id=os.environ['CLIENT_ID'],
     nick=os.environ['BOT_NICK'],
     prefix=os.environ['BOT_PREFIX'],
-    initial_channels=[os.environ['CHANNEL']]
+    initial_channels=['beginbot','beginbotbot','zanuss']
 )
 
 dirname = os.getcwd()
-my_drone = tello.Tello()
 
 # bot.py, below bot object
 @bot.event
@@ -46,6 +45,10 @@ async def event_ready():
 # bot.py, below event_ready
 @bot.event
 async def event_message(ctx):
+
+    if ctx.channel == "zanuss":
+        my_drone = tello.Tello()
+
     'Runs every time a message is sent in chat.'
     # make sure the bot ignores itself and the streamer
     if ctx.author.name.lower() == os.environ['BOT_NICK'].lower():
@@ -71,7 +74,7 @@ async def event_message(ctx):
         await f.close()
 
     #droneMovement
-    if os.environ['CHANNEL'] == "zanuss":
+    if ctx.channel == "zanuss":
         if ctx.content == "mleft":
             my_drone.left(100)
         if ctx.content == "mright":
@@ -91,17 +94,17 @@ async def event_message(ctx):
 
     #love a lover
     if ctx.content == "!love zanussbot":
-        await bot._ws.send_privmsg(os.environ['CHANNEL'], f"!love @{ctx.author.name.lower()}")
+        await ctx.channel.send(f"!love @{ctx.author.name.lower()}")
 
 
     #if 5min cat loop 
     if ctx.content == "CoolCat CoolCat CoolCat Mana Replenished":
-        await bot._ws.send_privmsg(os.environ['CHANNEL'], f"!props all")
+        await ctx.channel.send(f"!props all")
 
     #stupacTroll
     if ctx.author.name.lower() == "stupac62":
         if "keeb" in ctx.content.lower() or "keyboard" in ctx.content.lower():
-            await bot._ws.send_privmsg(os.environ['CHANNEL'], f"@stupac62 Did someone say keyboards? https://puu.sh/GyIa0/8943af5203.png")
+            await ctx.channel.send(f"@stupac62 Did someone say keyboards? https://puu.sh/GyIa0/8943af5203.png")
 
     #ErikPromote
     if ctx.author.name.lower() == "erikdotdev":
@@ -122,20 +125,20 @@ async def event_message(ctx):
         #limit how often it triggers
         roll = random.randint(0,10)
         if roll == 10:
-            await bot._ws.send_privmsg(os.environ['CHANNEL'], f"{promotions[promotion]}")
+            await ctx.channel.send(f"{promotions[promotion]}")
         
 
     if ctx.author.name.lower() == "artmattdank":
-        await bot._ws.send_privmsg(os.environ['CHANNEL'], f"beginbArt beginbArt beginbArt")
+        await ctx.channel.send(f"beginbArt beginbArt beginbArt")
 
     #lulbot
     if ctx.content == "LUL":
-        await bot._ws.send_privmsg(os.environ['CHANNEL'], f"beginbThis beginbThis beginbThis")
+        await ctx.channel.send(f"beginbThis beginbThis beginbThis")
 
 
     #hello
     if ctx.content == "hello":
-        await bot._ws.send_privmsg(os.environ['CHANNEL'], f"hello @{ctx.author.name.lower()}")
+        await ctx.channel.send(f"hello @{ctx.author.name.lower()}")
 
 
     #whats a google
@@ -150,13 +153,13 @@ async def event_message(ctx):
 
             if result:  
                 print(result)
-                await bot._ws.send_privmsg(os.environ['CHANNEL'], f"Search engine of choice* ftfy @{ctx.author.name.lower()}")
+                await ctx.channel.send(f"Search engine of choice* ftfy @{ctx.author.name.lower()}")
 
 
     #keep color greenscreen
     if "!color" in ctx.content:
         if ctx.author.name.lower() == "adengamesbot":
-            await bot._ws.send_privmsg(os.environ['CHANNEL'], f"!color base16-grayscale-light")
+            await ctx.channel.send(f"!color base16-grayscale-light")
 
 
 
