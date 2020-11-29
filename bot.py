@@ -1,4 +1,5 @@
 # bot.py
+from settings import *
 import os # for importing env vars for the bot to use
 import asyncio
 from linodeConnect import *
