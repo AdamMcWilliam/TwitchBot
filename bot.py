@@ -33,6 +33,7 @@ bot = commands.Bot(
 )
 
 dirname = os.getcwd()
+my_drone = tello.Tello()
 
 # bot.py, below bot object
 @bot.event
@@ -45,10 +46,6 @@ async def event_ready():
 # bot.py, below event_ready
 @bot.event
 async def event_message(ctx):
-
-    if ctx.channel == "zanuss":
-        my_drone = tello.Tello()
-
     'Runs every time a message is sent in chat.'
     # make sure the bot ignores itself and the streamer
     if ctx.author.name.lower() == os.environ['BOT_NICK'].lower():
@@ -74,23 +71,22 @@ async def event_message(ctx):
         await f.close()
 
     #droneMovement
-    if ctx.channel == "zanuss":
-        if ctx.content == "mleft":
-            my_drone.left(100)
-        if ctx.content == "mright":
-            my_drone.right(100)
-        if ctx.content == "tleft":
-            my_drone.cw(90)
-        if ctx.content == "tright":
-            my_drone.ccw(90)
-        if ctx.content == "forward":
-            my_drone.forward(100)
-        if ctx.content == "back":
-            my_drone.back(100)
-        if ctx.content == "up":
-            my_drone.up(100)
-        if ctx.content == "down":
-            my_drone.down(100)
+    if ctx.content == "mleft":
+        my_drone.left(100)
+    if ctx.content == "mright":
+        my_drone.right(100)
+    if ctx.content == "tleft":
+        my_drone.cw(90)
+    if ctx.content == "tright":
+        my_drone.ccw(90)
+    if ctx.content == "forward":
+        my_drone.forward(100)
+    if ctx.content == "back":
+        my_drone.back(100)
+    if ctx.content == "up":
+        my_drone.up(100)
+    if ctx.content == "down":
+        my_drone.down(100)
 
     #love a lover
     if ctx.content == "!love zanussbot":
@@ -367,6 +363,20 @@ async def salt(ctx):
     await asyncio.sleep(1)
     await ctx.send(f'!give {salty} salt')  
     await asyncio.gather(salt(ctx), salt(ctx), salt(ctx)) 
+
+@bot.command(name='bettingtime')
+async def new_cube(ctx):
+    if(ctx.author.name.lower() !='beginbotbot'):
+        return
+
+    avg = AvgCubeTime()
+    #convert from timestamp to seconds current 0:00:00
+    splitAvg = avg.split(':')
+    h = int(splitAvg[0]) * 60 * 60
+    m = int(splitAvg[1]) * 60
+    s = int(splitAvg[2])
+    secs = h+m+s
+    await ctx.send(f"!bet {secs}")
 
 @bot.command(name='cubed')
 async def cubed(ctx):
