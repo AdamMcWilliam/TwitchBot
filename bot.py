@@ -22,7 +22,7 @@ import datetime
 import sched, time
 import binascii
 import random
-from easytello import tello #drone lol
+#from easytello import tello #drone lol
 
 bot = commands.Bot(
     # set up the bot
@@ -34,7 +34,7 @@ bot = commands.Bot(
 )
 
 dirname = os.getcwd()
-my_drone = tello.Tello()
+#my_drone = tello.Tello()
 
 # bot.py, below bot object
 @bot.event
@@ -72,22 +72,22 @@ async def event_message(ctx):
         await f.close()
 
     #droneMovement
-    if ctx.content == "mleft":
-        my_drone.left(100)
-    if ctx.content == "mright":
-        my_drone.right(100)
-    if ctx.content == "tleft":
-        my_drone.cw(90)
-    if ctx.content == "tright":
-        my_drone.ccw(90)
-    if ctx.content == "forward":
-        my_drone.forward(100)
-    if ctx.content == "back":
-        my_drone.back(100)
-    if ctx.content == "up":
-        my_drone.up(100)
-    if ctx.content == "down":
-        my_drone.down(100)
+   #if ctx.content == "mleft":
+   #    my_drone.left(100)
+   #if ctx.content == "mright":
+   #    my_drone.right(100)
+   #if ctx.content == "tleft":
+   #    my_drone.cw(90)
+   #if ctx.content == "tright":
+   #    my_drone.ccw(90)
+   #if ctx.content == "forward":
+   #    my_drone.forward(100)
+   #if ctx.content == "back":
+   #    my_drone.back(100)
+   #if ctx.content == "up":
+   #    my_drone.up(100)
+   #if ctx.content == "down":
+   #    my_drone.down(100)
 
     #love a lover
     if ctx.content == "!love zanussbot":
@@ -165,30 +165,30 @@ async def event_message(ctx):
 
 
 #drone commands
-@bot.command(name="!droneStart")
-async def droneStart(ctx):
-    if ctx.author.name.lower() == "zanuss":
-        my_drone.takeoff()
-        await ctx.send(f"Starting Drone")
+# @bot.command(name="!droneStart")
+# async def droneStart(ctx):
+#     if ctx.author.name.lower() == "zanuss":
+#         my_drone.takeoff()
+#         await ctx.send(f"Starting Drone")
 
-@bot.command(name="!droneCam")
-async def droneCam(ctx):
-    if ctx.author.name.lower() == "zanuss":
-        my_drone.streamon()
-        await ctx.send(f"starting Drone Cam")
+# @bot.command(name="!droneCam")
+# async def droneCam(ctx):
+#     if ctx.author.name.lower() == "zanuss":
+#         my_drone.streamon()
+#         await ctx.send(f"starting Drone Cam")
 
-@bot.command(name="!droneStop")
-async def droneStart(ctx):
-    if ctx.author.name.lower() == "zanuss":
-        my_drone.land()
-        my_drone.streamoff()
-        await ctx.send(f"Stopping Drone")
+# @bot.command(name="!droneStop")
+# async def droneStart(ctx):
+#     if ctx.author.name.lower() == "zanuss":
+#         my_drone.land()
+#         my_drone.streamoff()
+#         await ctx.send(f"Stopping Drone")
 
-@bot.command(name="!e")
-async def droneEmergency(ctx):
-    if ctx.author.name.lower() == "zanuss":
-        my_drone.emergency()
-        await ctx.send(f"Emergency Drone Stop")
+# @bot.command(name="!e")
+# async def droneEmergency(ctx):
+#     if ctx.author.name.lower() == "zanuss":
+#         my_drone.emergency()
+#         await ctx.send(f"Emergency Drone Stop")
 
 #regular commands
 @bot.command(name="!jesterclue")
