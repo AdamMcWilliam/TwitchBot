@@ -22,12 +22,12 @@ def keeboftheday():
     token = result['access_token']
 
     headers = {"Authorization": f"bearer {token}", "User-Agent": "ChangeMeClient/0.1 by zanussbot"}
-    response = requests.get("https://oauth.reddit.com/r/MechanicalKeyboards/hot/.json?limit=2", headers=headers)
+    response = requests.get("https://oauth.reddit.com/r/MechanicalKeyboards/hot/.json?limit=3", headers=headers)
     ##print(response.json())
     response = response.json()
 
     #need to go in data -> children -> find image
-    url = response['data']['children'][1]['data']['preview']['images'][0]['source']['url']
+    url = response['data']['children'][2]['data']['preview']['images'][0]['source']['url']
 
     #fix URL
     url = url.replace("&amp;", "&")
