@@ -1,0 +1,2 @@
+from autoStu import *
+keeboftheday()
