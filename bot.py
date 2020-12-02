@@ -95,7 +95,7 @@ async def event_message(ctx):
 
 
     #if 5min cat loop 
-    if ctx.content == "CoolCat CoolCat CoolCat Mana Replenished":
+    if ctx.content == "GlitchCat CoolCat CoolCat GlitchCat Mana Replenished GlitchCat CoolCat CoolCat GlitchCat":
         await ctx.channel.send(f"!props all")
 
     #stupacTroll
