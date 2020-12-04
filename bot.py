@@ -125,12 +125,12 @@ async def event_message(ctx):
             await ctx.channel.send(f"{promotions[promotion]}")
         
 
-    if ctx.author.name.lower() == "artmattdank":
-        await ctx.channel.send(f"beginbArt beginbArt beginbArt")
+    # if ctx.author.name.lower() == "artmattdank":
+    #     await ctx.channel.send(f"beginbArt beginbArt beginbArt")
 
     #lulbot
-    if ctx.content == "LUL":
-        await ctx.channel.send(f"beginbThis beginbThis beginbThis")
+    # if ctx.content == "LUL":
+    #     await ctx.channel.send(f"beginbThis beginbThis beginbThis")
 
 
     #hello
