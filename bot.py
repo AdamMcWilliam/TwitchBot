@@ -191,6 +191,19 @@ async def event_message(ctx):
 #         await ctx.send(f"Emergency Drone Stop")
 
 #regular commands
+@bot.command(name="!primetest")
+async def primetest(ctx):
+    if ctx.author.name.lower() == "zanuss":
+        await ctx.send("!primeooh")
+        await ctx.send("!rotate primeagen 20")
+        await ctx.send("!rotate primeagen 20")
+        await ctx.send("!rotate primeagen 20")
+        await ctx.send("!rotate primeagen 20")
+        await ctx.send("!rotate primeagen 20")
+        await ctx.send("!rotate primeagen 20")
+        await ctx.send("!rotate primeagen 20")
+
+
 @bot.command(name="!jesterclue")
 async def jesterclue(ctx):
     if ctx.author.name.lower() == "zanuss":
