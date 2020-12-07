@@ -194,13 +194,13 @@ async def event_message(ctx):
 @bot.command(name="!primetest")
 async def primetest(ctx):
     if ctx.author.name.lower() == "zanuss":
-        await ctx.send("!primeooh")
-        await ctx.send("!rotate primeagen 20")
-        await ctx.send("!rotate primeagen 20")
-        await ctx.send("!rotate primeagen 20")
-        await ctx.send("!rotate primeagen 20")
-        await ctx.send("!rotate primeagen 20")
-        await ctx.send("!rotate primeagen 20")
+        ctx.send("!primeooh")
+        ctx.send("!rotate primeagen 20")
+        ctx.send("!rotate primeagen 20")
+        ctx.send("!rotate primeagen 20")
+        ctx.send("!rotate primeagen 20")
+        ctx.send("!rotate primeagen 20")
+        ctx.send("!rotate primeagen 20")
         await ctx.send("!rotate primeagen 20")
 
 
