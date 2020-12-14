@@ -191,18 +191,10 @@ async def event_message(ctx):
 #         await ctx.send(f"Emergency Drone Stop")
 
 #regular commands
-@bot.command(name="!primetest")
-async def primetest(ctx):
-    if ctx.author.name.lower() == "zanuss":
-        ctx.send("!primeooh")
-        ctx.send("!rotate primeagen 20")
-        ctx.send("!rotate primeagen 20")
-        ctx.send("!rotate primeagen 20")
-        ctx.send("!rotate primeagen 20")
-        ctx.send("!rotate primeagen 20")
-        ctx.send("!rotate primeagen 20")
-        await ctx.send("!rotate primeagen 20")
 
+@bot.command(name='!begingrid')
+async def begingrid(ctx): 
+    await ctx.send(f'Positional Helper for the memes: https://adammcwilliam.github.io/beginGrid/') 
 
 @bot.command(name="!jesterclue")
 async def jesterclue(ctx):
