@@ -100,7 +100,7 @@ async def event_message(ctx):
 
     #stupacTroll
     if ctx.author.name.lower() == "stupac62":
-        if "keeb" in ctx.content.lower() or "keyboard" in ctx.content.lower():
+        if ("keeb" in ctx.content.lower() or "keyboard" in ctx.content.lower()) and '!' not in ctx.content.lower():
             await ctx.channel.send(f"@stupac62 Did someone say keyboards? https://puu.sh/GyIa0/8943af5203.png")
 
     #ErikPromote
